@@ -1,0 +1,22 @@
+#logging:
+#  level:
+#    org.springframework.web: trace
+#    org.springframework.jdbc.core: trace
+#    org.springframework.data.jpa: trace
+#    root: debug
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/springcloud6
+    username: root
+    password: test
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: "false"
+
+#  main:
+#    banner-mode: off
