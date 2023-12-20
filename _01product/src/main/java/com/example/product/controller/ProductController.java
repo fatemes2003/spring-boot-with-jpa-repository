@@ -4,6 +4,7 @@ import com.example.product.entity.Product;
 import com.example.product.entity.dto.ProductRequest;
 import com.example.product.entity.dto.ProductResponse;
 import com.example.product.service.contract.ProductService;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/products")
+@Slf4j
 public class ProductController {
 
     @Autowired
@@ -26,8 +28,8 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<ProductResponse> createProduct(@RequestBody ProductRequest productRequest)
     {
-        Product product = modelMapper.map(productRequest, Product.class);
-        product = productService.insertProduct(product);
+        log.info("new product created : {}", productRequest);
+        Product product = productService.insertProduct(productRequest);
         ProductResponse productResponse = modelMapper.map(product, ProductResponse.class);
         return new ResponseEntity<ProductResponse>(productResponse, HttpStatus.CREATED);
     }
