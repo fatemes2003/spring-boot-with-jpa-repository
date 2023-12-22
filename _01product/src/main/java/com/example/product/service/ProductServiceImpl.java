@@ -2,10 +2,13 @@ package com.example.product.service;
 
 import com.example.discount.CouponResponse;
 import com.example.discount.DiscountClient;
+import com.example.notification.NotificationClient;
+import com.example.notification.NotificationRequest;
 import com.example.product.entity.Product;
 import com.example.product.entity.dto.ProductRequest;
 import com.example.product.repository.ProductRepository;
 import com.example.product.service.contract.ProductService;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,15 +16,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     /*@Autowired
     private RestTemplate restTemplate;*/
@@ -35,6 +39,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ModelMapper modelMapper;
 
+    private final NotificationClient notificationClient;
     @Override
     public Product insertProduct(ProductRequest productRequest) {
         //CouponResponse couponResponse = restTemplate.getForObject("http://localhost:8086/api/v1/coupons/get-by-code/{code}", CouponResponse.class, productRequest.getCode());
@@ -45,7 +50,10 @@ public class ProductServiceImpl implements ProductService {
         Product product = modelMapper.map(productRequest, Product.class);
         BigDecimal subtract = new BigDecimal("100").subtract(Objects.requireNonNull(couponByCode.getBody()).getDiscount());
         product.setPrice(subtract.multiply(product.getPrice()).divide(new BigDecimal("100")));
-        return productRepository.save(product);
+        Product save = productRepository.save(product);
+        notificationClient.sendNotification(new NotificationRequest(String.format("product with id %s saved",save.getId()),
+                save.getName(), LocalDateTime.now()));
+        return save;
     }
 
     @Override

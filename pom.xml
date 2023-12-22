@@ -12,6 +12,7 @@
         <module>_02discount</module>
         <module>_03eureka_server</module>
         <module>_04clients</module>
+        <module>_05notification</module>
     </modules>
     <packaging>pom</packaging>
 

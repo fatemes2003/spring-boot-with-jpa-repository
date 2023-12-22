@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
-@EnableFeignClients(basePackages = "com.example.discount")
+@EnableFeignClients(basePackages = {"com.example.discount","com.example.notification"})
 public class ProductConfig {
     @Bean
     public ModelMapper modelMapper() {
