@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -74,6 +75,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProduct() {
+        List<Product> p = productRepository.findAll();
+        p.stream().sorted((o1, o2)->o1.getName().
+                        compareTo(o2.getName())).
+                collect(Collectors.toList());
         return productRepository.findAll();
     }
 

@@ -12,6 +12,7 @@
         <module name="_05notification" />
         <module name="_02discount" />
         <module name="_04clients" />
+        <module name="_06gateway_service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

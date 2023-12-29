@@ -13,6 +13,7 @@
         <module>_03eureka_server</module>
         <module>_04clients</module>
         <module>_05notification</module>
+        <module>_06gateway_service</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -57,6 +58,10 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
     </dependencies>
 
