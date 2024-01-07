@@ -22,14 +22,13 @@ public class ApiGatewayApplication {
                                 .path("/api/v1/products/**")
                                 .filters(gatewayFilterSpec -> gatewayFilterSpec.rewritePath("/api/v1/products/?(<segment>.*)","/api/v1/products/${segment}" )
                                         .addResponseHeader("My_Response_Time", LocalDateTime.now().toString())
-
                                 )
                                 .uri("lb://PRODUCT")
                 )
                 .route(predicateSpec ->
                         predicateSpec
                                 .path("/api/v1/coupons/**")
-                                .filters(gatewayFilterSpec -> gatewayFilterSpec.rewritePath("/api/v1/coupons?(<segment>.*)","/api/v1/coupons/${segment}" )
+                                .filters(gatewayFilterSpec -> gatewayFilterSpec.rewritePath("/api/v1/coupons/?(<segment>.*)","/api/v1/coupons/${segment}" )
                                         .addResponseHeader("My_Response_Time", LocalDateTime.now().toString())
                                 )
                                 .uri("lb://DISCOUNT"))
