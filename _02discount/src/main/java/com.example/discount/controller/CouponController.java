@@ -53,9 +53,9 @@ public class CouponController {
     }
 
     @RequestMapping(value = "get-by-code/{code}",method = RequestMethod.GET)
-    public ResponseEntity<CouponResponse> getCouponByCode(@PathVariable(name = "code") String code) {
+    public CouponResponse getCouponByCode(@PathVariable(name = "code") String code) {
         Coupon coupon = couponService.findByCouponCode(code);
         CouponResponse couponResponse = modelMapper.map(coupon, CouponResponse.class);
-        return ResponseEntity.ok().body(couponResponse);
+        return couponResponse;
     }
 }

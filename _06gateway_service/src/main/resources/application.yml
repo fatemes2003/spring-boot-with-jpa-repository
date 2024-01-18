@@ -39,9 +39,35 @@ management:
   info:
     env:
       enabled: true
+    health:
+      probes:
+        enabled: true
+
+
+
+
+  health:
+    circuitbreakers:
+     enabled: true
+
+
+
 
 info:
   app:
     name: "apigateway"
     description: " product micro api gateway"
     version: "1"
+
+
+
+resilience4j.circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10000
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+        allow-health-indicator-to-fail: false
+        register-health-indicator: true

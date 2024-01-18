@@ -17,7 +17,7 @@ public class LogFilter implements GlobalFilter {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         HttpHeaders headers = exchange.getRequest().getHeaders();
         long start = System.currentTimeMillis();
-        // pre pocess
+        // pre process
 
         return chain.filter(exchange).then(Mono.fromRunnable(() -> {
             long end = System.currentTimeMillis();

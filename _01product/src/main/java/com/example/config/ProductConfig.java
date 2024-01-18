@@ -1,12 +1,9 @@
 package com.example.config;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 @EnableFeignClients(basePackages = {"com.example.discount","com.example.notification"})
@@ -22,9 +19,9 @@ public class ProductConfig {
         return new RestTemplate();
     }*/
 
-    @Bean
+  /*  @Bean
     @LoadBalanced
     public WebClient.Builder builder() {
         return WebClient.builder();
-    }
+    }*/
 }

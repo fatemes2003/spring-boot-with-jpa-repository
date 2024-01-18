@@ -22,6 +22,8 @@ public class ApiGatewayApplication {
                                 .path("/api/v1/products/**")
                                 .filters(gatewayFilterSpec -> gatewayFilterSpec.rewritePath("/api/v1/products/?(<segment>.*)","/api/v1/products/${segment}" )
                                         .addResponseHeader("My_Response_Time", LocalDateTime.now().toString())
+                                        .circuitBreaker(config -> config.setName("productCircuitBreaker")
+                                                .setFallbackUri("forward:/ajab"))
                                 )
                                 .uri("lb://PRODUCT")
                 )

@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NotificationRequest {
-    private String sender;
-    private String message;
-    private LocalDateTime sendAt;
+    private Long toProductId;
+    private String Message;
 }
