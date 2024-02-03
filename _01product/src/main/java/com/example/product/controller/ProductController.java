@@ -4,6 +4,7 @@ import com.example.product.entity.Product;
 import com.example.product.entity.dto.ProductRequest;
 import com.example.product.entity.dto.ProductResponse;
 import com.example.product.service.contract.ProductService;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +49,22 @@ public class ProductController {
         return productService.getAllProduct().stream().map(product -> modelMapper.map(product, ProductResponse.class))
                 .collect(Collectors.toList());
     }
-
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
+    @Retry(name = "getProductById", fallbackMethod = "getProductByIdFallBack")
     public ResponseEntity<ProductResponse> getProductById(@PathVariable(name = "id") Long id) {
         Product product = productService.getProductById(id);
         ProductResponse productResponse = modelMapper.map(product, ProductResponse.class);
         return ResponseEntity.ok().body(productResponse);
+    }*/
+    @GetMapping("/{id}")
+    @Retry(name = "getProductById", fallbackMethod = "getProductByIdFallBack")
+    public ProductResponse getProductById(@PathVariable(name = "id") Long id) {
+        log.info("get product by id : {}", id);
+        throw new RuntimeException("my error");
+    }
+
+    public ProductResponse getProductByIdFallBack(@PathVariable(name = "id") Long id, Throwable throwable) {
+        log.info("getProductByIdFallBack by id : {}", id);
+        return new ProductResponse();
     }
 }

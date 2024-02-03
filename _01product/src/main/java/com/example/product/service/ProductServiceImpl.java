@@ -64,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductById(Long id) {
         Optional<Product> coupon = productRepository.findById(id);
-        return coupon.orElse(null);
+        return coupon.orElseThrow();
     }
 
     @Override

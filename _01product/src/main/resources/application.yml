@@ -87,3 +87,12 @@ resilience4j.circuitbreaker:
       automatic-transition-from-open-to-half-open-enabled: true
       allow-health-indicator-to-fail: false
       register-health-indicator: true
+
+resilience4j:
+  retry:
+    configs:
+      default:
+        max-attempts: 3
+        wait-duration: 100
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2

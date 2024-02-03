@@ -4,6 +4,7 @@ import com.example.discount.entity.Coupon;
 import com.example.discount.entity.dto.CouponRequest;
 import com.example.discount.entity.dto.CouponResponse;
 import com.example.discount.service.contract.CouponService;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/coupons")
+@Slf4j
 public class CouponController {
 
     @Autowired
@@ -54,8 +56,10 @@ public class CouponController {
 
     @RequestMapping(value = "get-by-code/{code}",method = RequestMethod.GET)
     public CouponResponse getCouponByCode(@PathVariable(name = "code") String code) {
-        Coupon coupon = couponService.findByCouponCode(code);
+        log.debug("invoked getCouponByCode");
+        throw new RuntimeException("sasasa");
+        /*Coupon coupon = couponService.findByCouponCode(code);
         CouponResponse couponResponse = modelMapper.map(coupon, CouponResponse.class);
-        return couponResponse;
+        return couponResponse;*/
     }
 }

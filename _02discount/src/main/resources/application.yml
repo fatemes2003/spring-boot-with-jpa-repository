@@ -29,6 +29,8 @@ eureka:
 server:
   port: 8086
 
-
+logging:
+  level:
+    com.example.discount: debug
 #  main:
 #    banner-mode: off
