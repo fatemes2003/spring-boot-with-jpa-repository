@@ -1,0 +1,108 @@
+version: '3.5'
+services:
+#  mysql:
+#    image: mysql:8.0
+#    container_name: mysql
+#    environment:
+#      MYSQL_ROOT_PASSWORD: test
+#      MYSQL_DATABASE: root_password
+#    volumes:
+#      - my-datavolume:/var/lib/mysql
+#    ports:
+#      - "3307:3306"
+#    networks:
+#      - mysql
+
+  eureka:
+    image: dockerfatemeh/03eureka_server:test6
+    container_name: eureka
+    ports:
+      - "8761:8761"
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+    networks:
+      - spring
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+
+  product:
+    image: dockerfatemeh/01product:test6
+    container_name: product6
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+    networks:
+      - spring
+      - mysql
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - eureka
+
+
+  discount:
+    image: dockerfatemeh/02discount:test6
+    container_name: discount6
+    ports:
+      - "8085:8085"
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+    networks:
+      - spring
+      - mysql
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - eureka
+
+
+
+  notification:
+    image: dockerfatemeh/05notification:test6
+    container_name: notification6
+    ports:
+      - "8082:8082"
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+    networks:
+      - spring
+      - mysql
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - eureka
+
+
+
+  apigetway:
+    image: dockerfatemeh/06apigetway:test6
+    container_name: apigetway6
+    ports:
+      - "7070:7070"
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+    networks:
+      - spring
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - eureka
+networks:
+  default:
+  spring:
+    driver: bridge
+  mysql:
+    name: some-mysql
+    external: true

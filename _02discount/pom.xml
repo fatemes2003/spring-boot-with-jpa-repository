@@ -9,7 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>_02discount</artifactId>
+    <artifactId>02discount</artifactId>
+    <version>test6</version>
+    <packaging>jar</packaging>
+    <name>_02discount</name>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

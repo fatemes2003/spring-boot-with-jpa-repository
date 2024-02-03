@@ -9,7 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>_05notification</artifactId>
+    <artifactId>05notification</artifactId>
+    <packaging>jar</packaging>
+    <version>test6</version>
+    <name>_05notification</name>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
