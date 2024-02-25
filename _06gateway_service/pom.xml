@@ -9,7 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>_06gateway_service</artifactId>
+    <artifactId>06gateway_service</artifactId>
+    <name>_06gateway_service</name>
+    <version>test6</version>
     <packaging>jar</packaging>
 
     <properties>

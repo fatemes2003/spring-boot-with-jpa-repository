@@ -14,6 +14,7 @@
         <module>_04clients</module>
         <module>_05notification</module>
         <module>_06gateway_service</module>
+        <module>_07amqp</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -81,6 +82,9 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>3.4.0</version>
                 <configuration>
+                    <from>
+                        <image>docker://openjdk:17-jdk-slim</image>
+                    </from>
                     <to>
                         <image>dockerfatemeh/${artifactId}:${version}</image>
                     </to>

@@ -1,17 +1,18 @@
 version: '3.5'
 services:
-#  mysql:
-#    image: mysql:8.0
-#    container_name: mysql
-#    environment:
-#      MYSQL_ROOT_PASSWORD: test
-#      MYSQL_DATABASE: root_password
-#    volumes:
-#      - my-datavolume:/var/lib/mysql
-#    ports:
-#      - "3307:3306"
-#    networks:
-#      - mysql
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    volumes:
+      - "./data/db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'test'
+      MYSQL_DATABASE: 'springcloud6'
+    networks:
+      - mysql
+
 
   eureka:
     image: dockerfatemeh/03eureka_server:test6
@@ -44,13 +45,14 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
       - eureka
+      - mysql
 
 
   discount:
     image: dockerfatemeh/02discount:test6
     container_name: discount6
     ports:
-      - "8085:8085"
+      - "8086:8086"
     deploy:
       resources:
         limits:
@@ -62,6 +64,7 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
       - eureka
+      - mysql
 
 
 
@@ -81,11 +84,12 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
       - eureka
+      - mysql
 
 
 
   apigetway:
-    image: dockerfatemeh/06apigetway:test6
+    image: dockerfatemeh/06gateway_service:test6
     container_name: apigetway6
     ports:
       - "7070:7070"
@@ -99,10 +103,22 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
       - eureka
+
+#  rabbitmq:
+#    image: rabbitmq:latest
+#    #image: rabbitmq:3.9.11-management-alpine
+#    container_name: 'rabbitmq'
+#    ports:
+#      - 5672:5672
+#      - 15672:15672
+#    networks:
+#      - spring
+
 networks:
   default:
   spring:
     driver: bridge
   mysql:
-    name: some-mysql
-    external: true
+    driver: bridge
+#volumes:
+#  my-datavolume:

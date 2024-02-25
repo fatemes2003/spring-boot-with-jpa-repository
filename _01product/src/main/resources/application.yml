@@ -26,6 +26,9 @@ spring:
       circuitbreaker:
         enabled: true
 
+  rabbitmq:
+    addresses: localhost:5672
+
 eureka:
 # instance:
 #   prefer-ip-address: false
