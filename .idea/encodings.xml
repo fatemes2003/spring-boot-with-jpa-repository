@@ -15,6 +15,8 @@
     <file url="file://$PROJECT_DIR$/_06gateway_service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_07amqp/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_07amqp/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_08kafka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_08kafka/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

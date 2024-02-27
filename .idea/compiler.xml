@@ -13,16 +13,17 @@
         <module name="_05notification" />
         <module name="01product" />
         <module name="03eureka_server" />
+        <module name="_08kafka" />
         <module name="06gateway_service" />
         <module name="02discount" />
         <module name="_02discount" />
         <module name="_04clients" />
-        <module name="_07amqp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="_04clients06" target="17" />
       <module name="_06gateway_service" target="17" />
+      <module name="_07amqp" target="17" />
       <module name="_discount" target="17" />
     </bytecodeTargetLevel>
   </component>

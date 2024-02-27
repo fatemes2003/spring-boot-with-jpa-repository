@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @AllArgsConstructor
 public class NotificationServiceImpl implements NotificationService {
@@ -17,6 +19,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public void send(NotificationRequest notificationRequest) {
-       notificationRepository.save(modelMapper.map(notificationRequest, Notification.class));
+        notificationRepository.save(new Notification("org.example",notificationRequest.getMessage(), LocalDateTime.now()));
+        //notificationRepository.save(modelMapper.map(notificationRequest, Notification.class));
     }
 }

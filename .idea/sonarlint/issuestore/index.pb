@@ -11,8 +11,6 @@ Q_01product/src/main/java/com/example/product/service/contract/ProductService.ja
 L_01product/src/main/java/com/example/product/entity/dto/ProductResponse.java,2\c\2c23debe7a022532b57f4c9b91a751a95ed06e5e
 q
 A_04clients/src/main/java/com/example/discount/DiscountClient.java,2\c\2c1031b2cbdbc27fb2456b1d56b97146f8ced063
-n
->_01product/src/main/java/com/example/config/ProductConfig.java,0\1\01531b87fbc9b2d6a90a7da623fde591eb31744e
 C
 _02discount/pom.xml,d\6\d6284c727713d42c4f175cc09a275f5d81691c35
 H
@@ -22,19 +20,5 @@ B
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-J
-_06gateway_service/pom.xml,c\8\c8cb41fb059b00511fc0318e2c1738a93871bd17
-l
-<_01product/src/main/java/com/example/ProductApplication.java,d\2\d20fbf65bd3ac35325f8b86c5d496c2113b125bb
-z
-J_04clients/src/main/java/com/example/notification/NotificationRequest.java,b\e\be1f9312d12ac2298f7021e5c886eac456eba580
 
 ]_05notification/src/main/java/com/example/notification/controller/NotificationController.java,8\3\8337fda8e2d0a97a2a0b0159362c8cf275e4d1e4
-‹
-[_05notification/src/main/java/com/example/notification/service/NotificationServiceImpl.java,c\2\c22d2b477b3b373d161250fd6ac41e77d91831a5
-e
-5_07amqp/src/main/java/com/example/RabbitMQConfig.java,7\8\78ef46c3a2bc0dc04fc12bc10f76fce4cb6048ab
-n
->_07amqp/src/main/java/com/example/RabbitMQMessageProducer.java,2\d\2d635f612ac9b03b163b3ad877490ed64d1669d4

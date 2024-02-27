@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 @AllArgsConstructor
 @Slf4j
 public class RabbitMQMessageProducer {

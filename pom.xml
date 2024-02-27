@@ -14,7 +14,8 @@
         <module>_04clients</module>
         <module>_05notification</module>
         <module>_06gateway_service</module>
-        <module>_07amqp</module>
+        <module>_08kafka</module>
+        <!--        <module>_07amqp</module>-->
     </modules>
     <packaging>pom</packaging>
 

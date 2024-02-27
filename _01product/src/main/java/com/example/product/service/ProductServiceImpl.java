@@ -8,10 +8,10 @@ import com.example.product.entity.Product;
 import com.example.product.entity.dto.ProductRequest;
 import com.example.product.repository.ProductRepository;
 import com.example.product.service.contract.ProductService;
-import com.example.RabbitMQMessageProducer;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
@@ -37,9 +37,11 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private NotificationClient notificationClient;
 
-    @Autowired
-    private RabbitMQMessageProducer rabbitMQMessageProducer;
+//    @Autowired
+//    private RabbitMQMessageProducer rabbitMQMessageProducer;
 
+    @Autowired
+    private KafkaTemplate<String, NotificationRequest> kafkaTemplate;
     @Override
     public Product insertProduct(ProductRequest productRequest) {
         Product product=new Product(productRequest.getName(),productRequest.getDescription(),productRequest.getPrice());
@@ -62,12 +64,16 @@ public class ProductServiceImpl implements ProductService {
 //        notificationClient.sendNotification(
 //                new NotificationRequest(product.getId(),String.format("product with id %s saved",save.getId()))
 //        );
+        // todo: rabbitMQ
+//        NotificationRequest notificationRequest = new NotificationRequest(product.getId(), String.format("product with id %s saved", save.getId()));
+//        rabbitMQMessageProducer.publish(
+//                notificationRequest,
+//                "product-exchange",
+//                "product.notification.routing-key"
+//        );
+        // todo: kafka
         NotificationRequest notificationRequest = new NotificationRequest(product.getId(), String.format("product with id %s saved", save.getId()));
-        rabbitMQMessageProducer.publish(
-                notificationRequest,
-                "product-exchange",
-                "product.notification.routing-key"
-        );
+        kafkaTemplate.send("product4","1", notificationRequest);
         return save;
     }
 

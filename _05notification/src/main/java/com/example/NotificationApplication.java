@@ -14,10 +14,10 @@ public class NotificationApplication {
         SpringApplication.run(NotificationApplication.class, args);
     }
 
-    @Bean
-    public CommandLineRunner commandLineRunner(RabbitMQMessageProducer rabbitMQMessageProducer, AMQPInit amqpInit) {
-        return args -> {
-            rabbitMQMessageProducer.publish(new NotificationRequest(2l,"dsds"), amqpInit.getExchange(), amqpInit.getRoutingKey());
-        };
-    }
+//    @Bean
+//    public CommandLineRunner commandLineRunner(RabbitMQMessageProducer rabbitMQMessageProducer, AMQPInit amqpInit) {
+//        return args -> {
+//            rabbitMQMessageProducer.publish(new NotificationRequest(2l,"dsds"), amqpInit.getExchange(), amqpInit.getRoutingKey());
+//        };
+//    }
 }
