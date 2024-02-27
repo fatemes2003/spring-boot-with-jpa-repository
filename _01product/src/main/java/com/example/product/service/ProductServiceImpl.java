@@ -8,6 +8,7 @@ import com.example.product.entity.Product;
 import com.example.product.entity.dto.ProductRequest;
 import com.example.product.repository.ProductRepository;
 import com.example.product.service.contract.ProductService;
+import com.example.RabbitMQMessageProducer;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,9 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private NotificationClient notificationClient;
 
+    @Autowired
+    private RabbitMQMessageProducer rabbitMQMessageProducer;
+
     @Override
     public Product insertProduct(ProductRequest productRequest) {
         Product product=new Product(productRequest.getName(),productRequest.getDescription(),productRequest.getPrice());
@@ -55,8 +59,14 @@ public class ProductServiceImpl implements ProductService {
 
 
         //todo: send notification
-        notificationClient.sendNotification(
-                new NotificationRequest(product.getId(),String.format("product with id %s saved",save.getId()))
+//        notificationClient.sendNotification(
+//                new NotificationRequest(product.getId(),String.format("product with id %s saved",save.getId()))
+//        );
+        NotificationRequest notificationRequest = new NotificationRequest(product.getId(), String.format("product with id %s saved", save.getId()));
+        rabbitMQMessageProducer.publish(
+                notificationRequest,
+                "product-exchange",
+                "product.notification.routing-key"
         );
         return save;
     }

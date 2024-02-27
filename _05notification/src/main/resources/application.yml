@@ -36,6 +36,10 @@ eureka:
 server:
   port: 8082
 
+rabbitmq:
+  exchange: product-exchange
+  queue: notification.queue
+  routing-key: product.notification.routing-key
 
 #  main:
 #    banner-mode: off
