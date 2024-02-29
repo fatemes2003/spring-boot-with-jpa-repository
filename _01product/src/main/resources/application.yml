@@ -99,3 +99,10 @@ resilience4j:
         wait-duration: 100
         enable-exponential-backoff: true
         exponential-backoff-multiplier: 2
+#dar 20 sanie 5 request va timout shoma 1 sanie hast
+  ratelimiter:
+    configs:
+      default:
+        limit-refresh-period: 20000
+        limit-for-period: 5
+        timeout-duration: 1

@@ -4,6 +4,7 @@ import com.example.product.entity.Product;
 import com.example.product.entity.dto.ProductRequest;
 import com.example.product.entity.dto.ProductResponse;
 import com.example.product.service.contract.ProductService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -58,13 +59,21 @@ public class ProductController {
     }*/
     @GetMapping("/{id}")
     @Retry(name = "getProductById", fallbackMethod = "getProductByIdFallBack")
+    @RateLimiter(name = "getProductById", fallbackMethod = "getProductByIdFallBackRateLimiter")
     public ProductResponse getProductById(@PathVariable(name = "id") Long id) {
         log.info("get product by id : {}", id);
-        throw new RuntimeException("my error");
+        //throw new RuntimeException("my error");
+        Product product = productService.getProductById(id);
+        return modelMapper.map(product, ProductResponse.class);
     }
 
     public ProductResponse getProductByIdFallBack(@PathVariable(name = "id") Long id, Throwable throwable) {
         log.info("getProductByIdFallBack by id : {}", id);
+        return new ProductResponse();
+    }
+
+    public ProductResponse getProductByIdFallBackRateLimiter(@PathVariable(name = "id") Long id, Throwable throwable) {
+        log.info("getProductByIdFallBackRateLimiter by id : {}", id);
         return new ProductResponse();
     }
 }
