@@ -61,9 +61,9 @@ public class ProductServiceImpl implements ProductService {
 
 
         //todo: send notification
-//        notificationClient.sendNotification(
-//                new NotificationRequest(product.getId(),String.format("product with id %s saved",save.getId()))
-//        );
+        notificationClient.sendNotification(
+                new NotificationRequest(product.getId(),String.format("product with id %s saved",save.getId()))
+        );
         // todo: rabbitMQ
 //        NotificationRequest notificationRequest = new NotificationRequest(product.getId(), String.format("product with id %s saved", save.getId()));
 //        rabbitMQMessageProducer.publish(
@@ -72,8 +72,8 @@ public class ProductServiceImpl implements ProductService {
 //                "product.notification.routing-key"
 //        );
         // todo: kafka
-        NotificationRequest notificationRequest = new NotificationRequest(product.getId(), String.format("product with id %s saved", save.getId()));
-        kafkaTemplate.send("product4","1", notificationRequest);
+//        NotificationRequest notificationRequest = new NotificationRequest(product.getId(), String.format("product with id %s saved", save.getId()));
+//        kafkaTemplate.send("product4","1", notificationRequest);
         return save;
     }
 

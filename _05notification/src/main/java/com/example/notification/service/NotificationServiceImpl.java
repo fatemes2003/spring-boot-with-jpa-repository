@@ -19,7 +19,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public void send(NotificationRequest notificationRequest) {
-        notificationRepository.save(new Notification("org.example",notificationRequest.getMessage(), LocalDateTime.now()));
-        //notificationRepository.save(modelMapper.map(notificationRequest, Notification.class));
+        //notificationRepository.save(new Notification("org.example",notificationRequest.getMessage(), LocalDateTime.now()));
+        notificationRepository.save(modelMapper.map(notificationRequest, Notification.class));
     }
 }

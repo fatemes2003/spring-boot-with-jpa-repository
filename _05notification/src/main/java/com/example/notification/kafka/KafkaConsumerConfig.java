@@ -34,7 +34,7 @@ public class KafkaConsumerConfig {
         return props;
     }
 
-    @Bean
+    //@Bean
     public ConsumerFactory<String, NotificationRequest> consumerFactory() {
         JsonDeserializer<NotificationRequest> jsonDeserializer = new JsonDeserializer<>();
         jsonDeserializer.addTrustedPackages("*");

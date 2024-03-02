@@ -34,3 +34,5 @@ build/
 target\
 .idea\
 !/data/
+!/docker-compose/default/.data/
+!/docker-compose/default/data/

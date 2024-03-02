@@ -16,7 +16,7 @@ public class KafkaNotificationConsumer {
     private NotificationService notificationService;
 
     //@KafkaHandler
-    @KafkaListener(topics = "product4",groupId = "1",containerFactory = "factory")
+    //@KafkaListener(topics = "product4",groupId = "1",containerFactory = "factory")
     void listener(NotificationRequest notificationRequest){
         log.warn("====>Consumed  {} from Queue",notificationRequest);
         notificationService.send(notificationRequest);
